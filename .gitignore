@@ -1,0 +1,4 @@
+# Project exclude paths
+/BaseModule/target/
+/target/
+/TestModule/target/
