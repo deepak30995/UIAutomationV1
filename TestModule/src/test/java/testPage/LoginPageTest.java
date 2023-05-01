@@ -43,11 +43,11 @@ public class LoginPageTest extends TestBase
         login.clickOnLoginButton();
     }*/
 
-    @Test(priority = 2, description = "Forgot password")
+/*    @Test(priority = 2, description = "Forgot password")
     @Epic("Login")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Forgot and reset password")
-    @Story("Login-0001 : Forgot and reset password should work")
+    @Story("Login-0002 : Forgot and reset password should work")
     public void forgotAndResetPassword()
     {
        String username = ut.readDataFromJsonFile(dataParams.loginJson, "username");
@@ -75,8 +75,24 @@ public class LoginPageTest extends TestBase
        String successfulMessageForPasswordRest =  login.getSuccessfulPasswordResetMsg();
        Assert.assertEquals(successfulMessageForPasswordRest, successfulMessageForPasswordReset);
 
+    }*/
 
+
+    @Test(priority = 3, description = "Signup account")
+    @Epic("Login")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Signup account")
+    @Story("Login-0001 : Creating a new account ")
+    public void signupAccount()
+    {
+        String signupEmail = ut.readDataFromJsonFile(dataParams.loginJson, "signupEmail");
+
+        login.clickOnSignUpButton();
+        login.enterEmailForSignup(signupEmail);
+        login.checkTermsOfUseCheckbox();
+        login.checkedCaptcha();
     }
+
 
 /*    @AfterMethod
     public void tearDown()

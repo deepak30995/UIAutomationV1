@@ -38,6 +38,18 @@ public class LoginPage extends TestBase
     @FindBy(xpath = "//h1[text()='Reset your password']/following-sibling::a[contains(text(),'https://register.cogmento.com/password/reset/')]")
     WebElement resetPasswordURL;
 
+    @FindBy(xpath = "//div[contains(text(),'You have successfully changed your password')]")
+    WebElement successfulPasswordRestMessage;
+
+    @FindBy(xpath = "//input[contains(@placeholder,'Enter a new password')]")
+    WebElement enterNewPasswordForRest;
+
+    @FindBy(xpath = "//input[@placeholder='Confirm your password']")
+    WebElement confirmPasswordForRest;
+
+    @FindBy(xpath = "//button[contains(text(),'Reset password')]")
+    WebElement clickOnRestPassword;
+
 
     public LoginPage()
     {
@@ -68,12 +80,6 @@ public class LoginPage extends TestBase
         forgotPasswordButton.click();
     }
 
-    @Step("Click on sign up button")
-    public void clickOnSignUpButton()
-    {
-        signupButton.click();
-    }
-
     @Step("Enter email for forgot password")
     public void enterEmailForForgotPassword(String email)
     {
@@ -96,6 +102,7 @@ public class LoginPage extends TestBase
     public void OpenInboxMail(String fromEmail)
     {
         WebElement inboxMailForRestPassword = driver.findElement(By.xpath("//tr[1]//td[contains(text(),'"+fromEmail+"')]"));
+        ut.explicitWait(inboxMailForRestPassword, 20);
         inboxMailForRestPassword.click();
     }
 
@@ -104,15 +111,6 @@ public class LoginPage extends TestBase
     {
         resetPasswordURL.click();
     }
-
-    @FindBy(xpath = "//input[contains(@placeholder,'Enter a new password')]")
-    WebElement enterNewPasswordForRest;
-
-    @FindBy(xpath = "//input[@placeholder='Confirm your password']")
-    WebElement confirmPasswordForRest;
-
-    @FindBy(xpath = "//button[contains(text(),'Reset password')]")
-    WebElement clickOnRestPassword;
 
     @Step("Enter a new password for reset the password")
     public void enterNewPassword(String pass)
@@ -132,15 +130,45 @@ public class LoginPage extends TestBase
         clickOnRestPassword.click();
     }
 
-    @FindBy(xpath = "//div[contains(text(),'You have successfully changed your password')]")
-    WebElement successfulPasswordRestMessage;
-
     @Step("Get successful password rest message")
     public String getSuccessfulPasswordResetMsg()
     {
        return successfulPasswordRestMessage.getText();
     }
 
+    @Step("Click on sign up button")
+    public void clickOnSignUpButton()
+    {
+        signupButton.click();
+    }
+
+    @FindBy(id = "email")
+    WebElement emailAddressInputField;
+
+    @Step("Enter email for the account signup")
+    public void enterEmailForSignup(String email)
+    {
+        String randomNumber = ut.generateRandomNumber();
+        emailAddressInputField.sendKeys(randomNumber+email);
+    }
+
+    @FindBy(xpath = "//input[@id='terms']")
+    WebElement termsOfUseCheckbox;
+
+    @Step("Check Terms of use checkbox")
+    public void checkTermsOfUseCheckbox()
+    {
+        termsOfUseCheckbox.click();
+    }
+
+    @FindBy(xpath = "//div[@class='recaptcha-checkbox-border']")
+    WebElement captchaCheckbox;
+
+    @Step("Checked captcha checkbox")
+    public void checkedCaptcha()
+    {
+        captchaCheckbox.click();
+    }
 
 
 
