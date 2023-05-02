@@ -30,7 +30,7 @@ public class LoginPageTest extends TestBase
         utils = new Utils();
     }
 
-/*    @Test(priority = 1, description = "Successful login")
+    @Test(priority = 1, description = "Successful login")
     @Epic("Login")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Successful login")
@@ -41,9 +41,9 @@ public class LoginPageTest extends TestBase
         login.enterUsername(username);
         login.enterPassword(password);
         login.clickOnLoginButton();
-    }*/
+    }
 
-/*    @Test(priority = 2, description = "Forgot password")
+    @Test(priority = 2, description = "Forgot password")
     @Epic("Login")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Forgot and reset password")
@@ -75,7 +75,7 @@ public class LoginPageTest extends TestBase
        String successfulMessageForPasswordRest =  login.getSuccessfulPasswordResetMsg();
        Assert.assertEquals(successfulMessageForPasswordRest, successfulMessageForPasswordReset);
 
-    }*/
+    }
 
 
     @Test(priority = 3, description = "Signup account")
@@ -94,9 +94,9 @@ public class LoginPageTest extends TestBase
     }
 
 
-/*    @AfterMethod
+    @AfterMethod
     public void tearDown()
     {
         TestBase.cleanup();
-    }*/
+    }
 }
