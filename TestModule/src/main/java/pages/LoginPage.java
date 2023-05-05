@@ -1,7 +1,6 @@
 package pages;
 
 import Base.TestBase;
-import com.microsoft.cognitiveservices.speech.SpeechConfig;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,8 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends TestBase
 {
-    private SpeechConfig config = SpeechConfig.fromSubscription("c5f183bc0c084b85a9d61e7bb5be626c", "francecentral");
-
     @FindBy(xpath = "//input[@placeholder='Email']")
     WebElement emailInputField;
 
