@@ -1,6 +1,7 @@
 {
-  "username": "testportalfreeaccount30995@mailinator.com",
+  "userEmail": "testportalfreeaccount30995@mailinator.com",
   "password": "Test@123",
+  "username": "Deepak Automation",
   "emailVerificationURL": "https://www.mailinator.com/v4/public/inboxes.jsp?to=",
   "successfulMessageForForgotPassword": "Thank you. You will receive an email with a password reset link if this account is registered.",
   "fromEmail": "noreply@mg.cogmento.com",

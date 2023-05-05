@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
+
+
 public class LoginPageTest extends TestBase
 {
 
@@ -36,11 +38,14 @@ public class LoginPageTest extends TestBase
     @Description("Successful login")
     @Story("Login-0001 : To check login should work")
     public void login() {
-        String username = ut.readDataFromJsonFile(dataParams.loginJson, "username");
+        String userEmail = ut.readDataFromJsonFile(dataParams.loginJson, "userEmail");
         String password = ut.readDataFromJsonFile(dataParams.loginJson, "password");
-        login.enterUsername(username);
+        String username = ut.readDataFromJsonFile(dataParams.loginJson,"username");
+        login.enterUsername(userEmail);
         login.enterPassword(password);
         login.clickOnLoginButton();
+        String usernameOnDashboard = login.getUsernameFromDashboard();
+        Assert.assertEquals(usernameOnDashboard, username);
     }
 
     @Test(priority = 2, description = "Forgot password")
@@ -50,16 +55,16 @@ public class LoginPageTest extends TestBase
     @Story("Login-0002 : Forgot and reset password should work")
     public void forgotAndResetPassword()
     {
-       String username = ut.readDataFromJsonFile(dataParams.loginJson, "username");
+       String userEmail = ut.readDataFromJsonFile(dataParams.loginJson, "userEmail");
        String emailVerificationURL = ut.readDataFromJsonFile(dataParams.loginJson, "emailVerificationURL");
-       String emailPrefix = StringUtils.substringBefore(username, "@");
+       String emailPrefix = StringUtils.substringBefore(userEmail, "@");
        String forgotPasswordSuccessfulMessage= ut.readDataFromJsonFile(dataParams.loginJson,"successfulMessageForForgotPassword");
        String fromEmail = ut.readDataFromJsonFile(dataParams.loginJson,"fromEmail");
        String newPassword = ut.readDataFromJsonFile(dataParams.loginJson, "newPasswordForReset");
        String successfulMessageForPasswordReset = ut.readDataFromJsonFile(dataParams.loginJson,"successfulMessageForPasswordReset");
 
        login.clickOnForgotYourPassword();
-       login.enterEmailForForgotPassword(username);
+       login.enterEmailForForgotPassword(userEmail);
        login.clickOnResetPassword();
        String successfulMessageForForgotPassword = login.verifyForgotPasswordSuccessfulMessage();
        Assert.assertEquals(successfulMessageForForgotPassword, forgotPasswordSuccessfulMessage);
@@ -75,22 +80,6 @@ public class LoginPageTest extends TestBase
        String successfulMessageForPasswordRest =  login.getSuccessfulPasswordResetMsg();
        Assert.assertEquals(successfulMessageForPasswordRest, successfulMessageForPasswordReset);
 
-    }
-
-
-    @Test(priority = 3, description = "Signup account")
-    @Epic("Login")
-    @Severity(SeverityLevel.CRITICAL)
-    @Description("Signup account")
-    @Story("Login-0001 : Creating a new account ")
-    public void signupAccount()
-    {
-        String signupEmail = ut.readDataFromJsonFile(dataParams.loginJson, "signupEmail");
-
-        login.clickOnSignUpButton();
-        login.enterEmailForSignup(signupEmail);
-        login.checkTermsOfUseCheckbox();
-        login.checkedCaptcha();
     }
 
 

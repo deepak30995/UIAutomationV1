@@ -1,6 +1,7 @@
 package pages;
 
 import Base.TestBase;
+import com.microsoft.cognitiveservices.speech.SpeechConfig;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends TestBase
 {
+    private SpeechConfig config = SpeechConfig.fromSubscription("c5f183bc0c084b85a9d61e7bb5be626c", "francecentral");
 
     @FindBy(xpath = "//input[@placeholder='Email']")
     WebElement emailInputField;
@@ -20,11 +22,11 @@ public class LoginPage extends TestBase
     @FindBy(xpath = "//div[text()='Login']")
     WebElement loginButton;
 
+    @FindBy(xpath = "//b[text()='Deepak Automation']")
+    WebElement loggedInUsername;
+
     @FindBy(xpath = "//a[contains(text(),'Forgot your password?')]")
     WebElement forgotPasswordButton;
-
-    @FindBy(xpath = "//a[contains(text(),'Sign Up')]")
-    WebElement signupButton;
 
     @FindBy(xpath="//input[@placeholder='Email address']")
     WebElement enterEmailForForgotPassword;
@@ -72,6 +74,13 @@ public class LoginPage extends TestBase
     public void clickOnLoginButton()
     {
         loginButton.click();
+    }
+
+    @Step("Verify the name of logged in user from the dashboard")
+    public String getUsernameFromDashboard()
+    {
+        ut.explicitWait(loggedInUsername, 10);
+        return loggedInUsername.getText();
     }
 
     @Step("Click on forgot you password button")
@@ -136,39 +145,11 @@ public class LoginPage extends TestBase
        return successfulPasswordRestMessage.getText();
     }
 
-    @Step("Click on sign up button")
-    public void clickOnSignUpButton()
-    {
-        signupButton.click();
-    }
 
-    @FindBy(id = "email")
-    WebElement emailAddressInputField;
 
-    @Step("Enter email for the account signup")
-    public void enterEmailForSignup(String email)
-    {
-        String randomNumber = ut.generateRandomNumber();
-        emailAddressInputField.sendKeys(randomNumber+email);
-    }
 
-    @FindBy(xpath = "//input[@id='terms']")
-    WebElement termsOfUseCheckbox;
 
-    @Step("Check Terms of use checkbox")
-    public void checkTermsOfUseCheckbox()
-    {
-        termsOfUseCheckbox.click();
-    }
 
-    @FindBy(xpath = "//div[@class='recaptcha-checkbox-border']")
-    WebElement captchaCheckbox;
-
-    @Step("Checked captcha checkbox")
-    public void checkedCaptcha()
-    {
-        captchaCheckbox.click();
-    }
 
 
 

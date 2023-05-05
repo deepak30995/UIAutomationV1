@@ -81,8 +81,8 @@ public class TestBase extends PathConstants
 
             driver.manage().window().maximize();
             driver.manage().deleteAllCookies();
-            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
             driver.get(url);
             tDriver.set(driver);
     }
