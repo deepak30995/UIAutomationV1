@@ -2,6 +2,7 @@ package testPage;
 
 import TestDataPath.DataParams;
 import Base.TestBase;
+import Utilities.RetryFailedTest;
 import Utilities.Utils;
 import io.qameta.allure.*;
 import org.apache.commons.lang3.StringUtils;
@@ -32,7 +33,7 @@ public class LoginPageTest extends TestBase
         utils = new Utils();
     }
 
-    @Test(priority = 1, description = "Successful login")
+    @Test(priority = 1, description = "Successful login", retryAnalyzer = RetryFailedTest.class)
     @Epic("Login")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Successful login")
@@ -48,7 +49,7 @@ public class LoginPageTest extends TestBase
         Assert.assertEquals(usernameOnDashboard, username);
     }
 
-    @Test(priority = 2, description = "Forgot password")
+    @Test(priority = 2, description = "Forgot password", retryAnalyzer = RetryFailedTest.class)
     @Epic("Login")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Forgot and reset password")
